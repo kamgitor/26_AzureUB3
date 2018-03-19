@@ -66,6 +66,11 @@ namespace Azure_doc
 			switch (command)
 			{
 			case "get":
+				bell_state = bells;
+				kurant_state = kurant;
+				seq_state = seq;
+				midi_state = midi;
+
 				response = "set," + bell_state.ToString() + "," + kurant_state.ToString() + "," + seq_state.ToString() + "," + midi_state.ToString();
 				break;
 
