@@ -18,6 +18,11 @@ namespace Azure_doc
 		public static uint seq_state = 0;
 		public static uint midi_state = 0;
 
+		public static uint zad_bell = 0;
+		public static uint zad_kur = 0;
+		public static uint zad_seq = 0;
+		public static uint zad_midi = 0;
+
 
 		[FunctionName("Function1")]
         public static IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequest req, TraceWriter log)
@@ -71,14 +76,19 @@ namespace Azure_doc
 				seq_state = seq;
 				midi_state = midi;
 
-				response = "set," + bell_state.ToString() + "," + kurant_state.ToString() + "," + seq_state.ToString() + "," + midi_state.ToString();
+				response = "set," + zad_bell.ToString() + "," + zad_kur.ToString() + "," + zad_seq.ToString() + "," + zad_midi.ToString();
+
+				zad_bell = 0;
+				zad_kur = 0;
+				zad_seq = 0;
+				zad_midi = 0;
 				break;
 
 			case "set":
-				bell_state = bells;
-				kurant_state = kurant;
-				seq_state = seq;
-				midi_state = midi;
+				zad_bell = bells;
+				zad_kur = kurant;
+				zad_seq = seq;
+				zad_midi = midi;
 
 				response = "ok," + bell_state.ToString() + "," + kurant_state.ToString() + "," + seq_state.ToString() + "," + midi_state.ToString();
 				break;
